@@ -18,7 +18,7 @@ def google_search_it(query):
 
 # ----get the news----
 
-base_url = "https://www.theguardian.com/international"
+base_url = "https://in.reuters.com"
 
 payload = requests.get(base_url)
 payload_code = BeautifulSoup(payload.content, 'html.parser')
@@ -36,7 +36,7 @@ for titles in payload_code.find_all('a', title=True):
 
 news_dump.close()'''
 
-links_dump = open('links_dump.txt', 'w')
+links_dump = open('links_dump.txt', 'w')                                                # scrape sites like TOI, ET
 
 for links in payload_code.find_all('a', href=True):
 
@@ -50,7 +50,7 @@ for links in payload_code.find_all('a', href=True):
 		if len(complete_title.split()) > 3:
 			links_dump.write(complete_title + '\n' + complete_link + '\n\n\n')
 
-for links_a in payload_code.find_all('a'):
+for links_a in payload_code.find_all('a'):                                              # scrape sites which have content within <a>
 
 	if links_a.has_attr('href'):
 
@@ -58,17 +58,25 @@ for links_a in payload_code.find_all('a'):
 
 		complete_link = links_a['href']
 
+		if links_a['href'][:4] != 'http':
+			complete_link = base_url + links_a['href']
+
 		if len(complete_title.split()) > 3:
 			links_dump.write(complete_title + '\n' + complete_link + '\n\n\n')
 
-for links_p in payload_code.find_all('p'):
+for links_p in payload_code.find_all('p'):                                              # scrape sites which have content within <p>
 
 	if links_p.has_attr('href'):
 
 		complete_title = ''.join(links_p.findAll(text=True))
 
 		complete_link = links_p['href']
+
+		if links_p['href'][:4] != 'http':
+			complete_link = base_url + links_p['href']
 		
 		if len(complete_title.split()) > 3:
 			links_dump.write(complete_title + '\n' + complete_link + '\n\n\n')
+
+
 links_dump.close() 
