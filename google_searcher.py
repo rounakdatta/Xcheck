@@ -2,12 +2,17 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
+query = "dell buys hp"
+
 def check_if_legit(domain_name):
 
-	global true_points
+	global points
 
 	if domain_name in legit_sites:
-		true_points += 1
+		points += 1
+
+	if domain_name in illegit_sites:
+		points -= 1
 
 def get_the_domain_name(complete_link):
 
@@ -66,15 +71,25 @@ def google_search_it(query):
 
 domains_list = []
 
-true_points = 0
+points = 0
 
-with open("dataset.txt") as data_file:
-    legit_sites = data_file.readlines()
-
+with open("true_dataset.txt") as true_data:
+    legit_sites = true_data.readlines()
 legit_sites = [x.strip() for x in legit_sites]
 
-query = "modi"
+with open("fake_dataset.txt") as fake_data:
+    illegit_sites = fake_data.readlines()
+illegit_sites = [x.strip() for x in illegit_sites]
+
+fake_words = ['fake', 'hoax', 'lie', 'lies', 'lies', 'false', 'illegitimate', 'rumour', 'counterfeit', 'forged', 'fictitious', 'fabricated', 'fraud']
+
+query_list = query.split()
+
+for i in query_list:
+	if i in fake_words:
+		points -= 1
+
 google_search_it(query)
 
-print(true_points)
+print(points)
 #print(domains_list)
