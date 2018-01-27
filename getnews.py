@@ -18,12 +18,12 @@ def google_search_it(query):
 
 # ----get the news----
 
-base_url = "https://timesofindia.indiatimes.com"
+base_url = "https://www.theguardian.com/international"
 
 payload = requests.get(base_url)
 payload_code = BeautifulSoup(payload.content, 'html.parser')
 
-news_dump = open("news_dump.txt", 'a')
+'''news_dump = open("news_dump.txt", 'a')
 
 for titles in payload_code.find_all('a', title=True):
 	# print(links['title']) # I got all the news titles
@@ -34,7 +34,7 @@ for titles in payload_code.find_all('a', title=True):
 
 	google_search_it(single_news_title)
 
-news_dump.close()
+news_dump.close()'''
 
 links_dump = open('links_dump.txt', 'w')
 
@@ -50,4 +50,25 @@ for links in payload_code.find_all('a', href=True):
 		if len(complete_title.split()) > 3:
 			links_dump.write(complete_title + '\n' + complete_link + '\n\n\n')
 
+for links_a in payload_code.find_all('a'):
+
+	if links_a.has_attr('href'):
+
+		complete_title = ''.join(links_a.findAll(text=True))
+
+		complete_link = links_a['href']
+
+		if len(complete_title.split()) > 3:
+			links_dump.write(complete_title + '\n' + complete_link + '\n\n\n')
+
+for links_p in payload_code.find_all('p'):
+
+	if links_p.has_attr('href'):
+
+		complete_title = ''.join(links_p.findAll(text=True))
+
+		complete_link = links_p['href']
+		
+		if len(complete_title.split()) > 3:
+			links_dump.write(complete_title + '\n' + complete_link + '\n\n\n')
 links_dump.close() 
