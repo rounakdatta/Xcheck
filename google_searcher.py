@@ -2,8 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
-query = "mukul roy joins bjp"
-
 def score_generator():
 
 	score = true_points - (false_points * 3)
@@ -98,31 +96,41 @@ def google_search_it(query):
 
 			get_the_domain_name(complete_link)
 
+def start_predict(query):
+
+	global true_points, false_points
+	global legit_sites, illegit_sites
+
+	with open("true_dataset.txt") as true_data:
+	    legit_sites = true_data.readlines()
+	legit_sites = [x.strip() for x in legit_sites]
+
+	with open("fake_dataset.txt") as fake_data:
+	    illegit_sites = fake_data.readlines()
+	illegit_sites = [x.strip() for x in illegit_sites]
+
+	fake_words = ['fake', 'hoax', 'lie', 'lies', 'lies', 'false', 'illegitimate', 'rumour', 'counterfeit', 'forged', 'fictitious', 'fabricated', 'fraud']
+
+	query_list = query.split()
+
+	for i in query_list:
+		if i in fake_words:
+			false_points += 1
+
+	google_search_it(query)
+
+	score_generator()
+
+	#print('True score: ' + str(true_points))
+	#print('False score: ' + str(false_points))
+
+
 domains_list = []
 
 true_points = 0
 false_points = 0
 
-with open("true_dataset.txt") as true_data:
-    legit_sites = true_data.readlines()
-legit_sites = [x.strip() for x in legit_sites]
+legit_sites = []
+illegit_sites = []
 
-with open("fake_dataset.txt") as fake_data:
-    illegit_sites = fake_data.readlines()
-illegit_sites = [x.strip() for x in illegit_sites]
-
-fake_words = ['fake', 'hoax', 'lie', 'lies', 'lies', 'false', 'illegitimate', 'rumour', 'counterfeit', 'forged', 'fictitious', 'fabricated', 'fraud']
-
-query_list = query.split()
-
-for i in query_list:
-	if i in fake_words:
-		false_points += 1
-
-google_search_it(query)
-
-score_generator()
-
-print('True score: ' + str(true_points))
-print('False score: ' + str(false_points))
-#print(domains_list)
+start_predict("modi prime minister")
