@@ -2,17 +2,46 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
-query = "dell buys hp"
+query = "mukul roy joins bjp"
+
+def score_generator():
+
+	score = true_points - (false_points * 3)
+
+	if(false_points >= 3):
+		score -= false_points * false_points
+	if(true_points <= 5):
+		score /= 4
+	elif(true_points <= 8):
+		score /= 3
+	elif(true_points <= 10):
+		score /= 2
+	elif(true_points <= 13):
+		score /= 1.5
+
+	if(true_points == 0 and false_points == 0):
+		print("Can't say")
+		return
+
+	score = score / (true_points + false_points)
+
+	if(score < 0):
+		score = 0
+	elif(score >= 1):
+		score = 0.9
+
+	print("Truth probability = " + str("{:.3f}".format(score)))
 
 def check_if_legit(domain_name):
 
-	global points
+	global true_points
+	global false_points
 
 	if domain_name in legit_sites:
-		points += 1
+		true_points += 1
 
 	if domain_name in illegit_sites:
-		points -= 1
+		false_points += 1
 
 def get_the_domain_name(complete_link):
 
@@ -41,15 +70,15 @@ def get_the_domain_name(complete_link):
 		domains_list.append(domain_name)
 
 def google_search_it(query):
-	r = requests.get("https://www.google.com/search", params={'as_epq':query, 'num':100}) # advanced search
+	r = requests.get("https://www.google.com/search", params={'q':query, 'num':100}) # advanced search 'as_epq'
 
 	soup = BeautifulSoup(r.text, "lxml")
 	results = soup.find("div", {"id": "resultStats"})
 
-	if(results.text == ""):
+	'''if(results.text == ""):
 		print("wtf?")
 	else:
-		print(results.text)
+		print(results.text)'''
 
 	stories = ''
 
@@ -71,7 +100,8 @@ def google_search_it(query):
 
 domains_list = []
 
-points = 0
+true_points = 0
+false_points = 0
 
 with open("true_dataset.txt") as true_data:
     legit_sites = true_data.readlines()
@@ -87,9 +117,12 @@ query_list = query.split()
 
 for i in query_list:
 	if i in fake_words:
-		points -= 1
+		false_points += 1
 
 google_search_it(query)
 
-print(points)
+score_generator()
+
+print('True score: ' + str(true_points))
+print('False score: ' + str(false_points))
 #print(domains_list)
