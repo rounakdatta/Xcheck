@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import argparse
 
-# ----google search it---
+# ----google search it---  ## remember to refresh your IP everytime you robot-search google
 
 def google_search_it(query):
 	r = requests.get("https://www.google.com/search", params={'q':query})
@@ -32,7 +32,7 @@ for titles in payload_code.find_all('a', title=True):
 
 	news_dump.write(single_news_title + '\n') # append the titles to the txt file
 
-	#google_search_it(single_news_title)
+	google_search_it(single_news_title)
 
 news_dump.close()
 
