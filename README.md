@@ -19,4 +19,12 @@ Often sensational news is created and spread through social media to achieve int
 
 When the fake-news detector is hosted locally / on a cloud platform, it can predict fake news with reasonable accuracy. Since edge cases of fake-news detection are controversial, the tool outputs a probability percentage instead of a rigid label.
 
+## Usage
 
+'''bash
+make
+'''
+
+This will start the local server at localhost:8000.
+
+_*Deps*: sklearn, pandas, django, requests, bs4_
