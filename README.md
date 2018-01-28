@@ -30,3 +30,5 @@ make
 This will start the local server at localhost:8000.
 
 _*Deps*: sklearn, pandas, django, requests, bs4_
+
+![Alt Text](https://github.com/{rounakdatta}/{xcheck}/raw/master/src/demo.gif)
