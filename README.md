@@ -1,5 +1,7 @@
 # SRM IET Hackathon 2018 | Team 10 - NightOwls
 
+[Demo video](https://www.youtube.com/watch?v=aZzxZA_KfXY&feature=youtu.be)<br>
+
 ## Problem Statement
 
 Often sensational news is created and spread through social media to achieve intended end. On the other hand, it may also involve narration of a true fact however being deliberately exaggerated. This may also affect the affect the importance of serious news media. The problem is to identify the authenticity of the news and online content. Equally important problem is to identify the bots involved in spreading false news.
@@ -32,7 +34,5 @@ make
 This will start the local server at localhost:8000.
 
 _*Deps*: sklearn, pandas, django, requests, bs4_
-
-[Demo video](https://www.youtube.com/watch?v=aZzxZA_KfXY&feature=youtu.be)<br>
 
 ![Alt Text](https://github.com/rounakdatta/Xcheck/blob/master/src/logo.png)
