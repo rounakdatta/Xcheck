@@ -21,9 +21,9 @@ When the fake-news detector is hosted locally / on a cloud platform, it can pred
 
 ## Usage
 
-'''bash
+```bash
 make
-'''
+```
 
 This will start the local server at localhost:8000.
 
