@@ -1,4 +1,4 @@
-# SRM IET Hackathon 2018
+# SRM IET Hackathon 2018 | Team 10 - NightOwls
 
 ## Problem Statement
 
