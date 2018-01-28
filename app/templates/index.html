@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome Home</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css"/>
+<style>
+    input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+
+    }
+    input[type=text] {
+    width: 180px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: white;
+
+
+    padding: 12px 20px 12px 20px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 50%;
+}
+
+
+
+
+    </style>
+</head>
+<body id="bg" style="background-image: url('{% static "images/bg2.jpg"%}')";>
+
+  <font face="georgia"><h3 align='middle' style="font-weight:bold;color:black;">Welcome to Fake News Detector
+  </h3></font>
+  <font face="georgia"><p align='middle' style="font-size:20px;color:black;">SRM IET - Hackathon 2018</p>
+    <hr>
+<div class="middle"></font>
+  <br><br><br><br><br><br><br><br>
+  <form align='middle' method="post">
+      {% csrf_token %}
+<input type="text" name="Article" placeholder="Type Article">
+
+<input type="submit" name="ArticleS" value="Article">
+
+
+<input type="text" name="KeyWord" placeholder="KeyWord">
+
+<input type="submit" name="KeyWordS" value="Keyword">
+
+<input type="text" name="Website" placeholder="Specify http/https">
+
+<input type="submit" name="WebsiteS" value="Website">
+
+
+</form>
+<br><br><br>
+<font face="georgia"><p align='middle'>Check the reliability of a news article, enquire the correctness of a fact or verify the authenticity of a URL!</p></font>
+
+
+
+
+
+    <div style=" position: fixed;
+       text-align: center;
+
+       bottom: 20px;
+       width: 100%;">
+       <img src="{% static 'images/logo.png' %}" height="140px" width="280px" align="middle"/>
+
+    </div>
+  </div>
+</body>
+</html>
