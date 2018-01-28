@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Output</title>
+      <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css"/>
+      <style>
+      @font-face {
+          font-family: 'GothamBold';
+          src: url('{% static 'fonts/GothamBold.ttf' %}');
+        }
+      </style>
+</head>
+
+<body id="bg" style="background-image: url('{% static "images/bg2.jpg"%}')";>
+
+  <br><br><br><br><br><br><br><br><br>
+
+<font face="GothamBold">  <h3 style="font-weight:bold;color:red">Predicted Output</h3></font>
+    <hr>
+<font face="GothamBold"><h3>  {{ output }}</h3></font>
+
+<br><br><br>
+
+ <font face="GothamBold"><h3><a href="{% url 'index' %}" >Home Page</a></h3></font>
+
+ <div style=" position: fixed;
+    text-align: center;
+
+    bottom: 20px;
+    width: 100%;">
+    <img src="{% static 'images/logo.png' %}" height="140px" width="280px" align="middle"/>
+
+ </div>
+</body>
+</html>

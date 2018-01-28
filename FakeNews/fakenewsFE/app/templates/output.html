@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Output</title>
+      <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css"/>
+</head>
+<body id="bg" style="background-image: url('{% static "images/bg2.jpg"%}')";>
+  <h3>Predicted Output</h3>
+    <hr>
+<h3>  {{ output }}</h3>
+<br><br><br>
+ <h3><a href="{% url 'index' %}" >Home Page</a></h3>
+
+ <div style=" position: fixed;
+    text-align: center;
+
+    bottom: 20px;
+    width: 100%;">
+    <img src="{% static 'images/logo.png' %}" height="140px" width="280px" align="middle"/>
+
+ </div>
+</body>
+</html>
