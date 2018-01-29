@@ -1,4 +1,4 @@
-Made by Niladri Shekhar Dutt, Rounak Dutta, Arko Chatterjee and Saurav Saha
+Made by _Niladri Shekhar Dutt_, _Arko Chatterjee_, _Saurav Saha_, _Rounak Datta_
 # SRM IET Hackathon 2018 | Team 10 - NightOwls
 
 [Demo video](https://www.youtube.com/watch?v=aZzxZA_KfXY&feature=youtu.be)<br>
